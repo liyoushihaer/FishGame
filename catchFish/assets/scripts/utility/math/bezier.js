@@ -51,8 +51,6 @@ const Bezier = function (controllerPoints, count, all_time) {
   that.getPoint = function (t) {
 
     if (t > _time){
-      console.log('time is out');
-
       return null;
     }
     let result = new Point2D;

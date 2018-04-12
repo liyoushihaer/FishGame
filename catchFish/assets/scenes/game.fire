@@ -546,6 +546,9 @@
     "gameBg": {
       "__id__": 4
     },
+    "bulletPrefab": {
+      "__uuid__": "4b1727d2-9404-4fcd-890e-00070ee0afa7"
+    },
     "_cannonScript": null
   },
   {

@@ -10,6 +10,10 @@ cc.Class({
             default:null,
             type:cc.Node
         },
+        bulletPrefab: {
+            default: null,
+            type: cc.Prefab
+        },
         _cannonPos:cc.Vec2(0,0),
         _cannonScript:null
     },
@@ -55,6 +59,14 @@ cc.Class({
         }
         this.gameCannon.rotation=angle;
         this._cannonScript.playAction();
+        this.createBullet(angle,this._cannonPos);
+    },
+
+    createBullet:function(angle,startPos){
+        let bulletNode = cc.instantiate(this.bulletPrefab);
+        bulletNode.parent = this.node;
+        
+        bulletNode.getComponent('bullet').initBulletWithData(angle,startPos);
     }
     // called every frame, uncomment this function to activate update callback
     // update: function (dt) {

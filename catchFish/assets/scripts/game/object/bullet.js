@@ -2,14 +2,50 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+        _angle:0,
+        _startPos:cc.Vec2(0,0),
+        _action:null,
+        _isStart:false
     },
 
     onLoad: function () {
 
     },
 
-    update: function (dt) {
+    initBulletWithData:function(angle,startPos){
+        this._angle = angle;
+        this._startPos = startPos;
+        this.node.position = startPos;
+        this._isStart = true;
+    },
 
+    update: function (dt) {
+        while (this._isStart) 
+        {
+            if(this.isBulletOutWindow()== true)
+            {
+                this.node.destroy();
+                return;
+            }
+    
+            let length = dt*10;
+            let deltaX = length* Math.cos(this._angle);
+            let deltaY = Math.abs(length*Math.sin(this._angle));
+            if(this._angle<0)
+            {
+                deltaX = deltaX*-1;
+            }
+            
+            let prePos = this.node.position; 
+            let newPos = new cc.Vec2(prePos.x+deltaX,prePos.y+deltaY); 
+            this.node.position  = newPos;
+
+            // var action = cc.moveTo(dt, newPos.x, newPos.y);
+           
+            // this.node.stopAction(this._action);
+            // this.node.runAction(action);
+            // this._action = action;
+        } ;
     },
 
     onCollisionEnter:function(other,self)
@@ -37,7 +73,9 @@ cc.Class({
 
     isBulletOutWindow:function(){
         let pos = this.node.position;
-        
+        if (pos.x >680 || pos.x <-680 || pos.y>400 || pos.y<-400) {
+            return true;
+        }
         return false;
     },
 

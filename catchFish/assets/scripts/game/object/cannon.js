@@ -17,8 +17,7 @@ cc.Class({
         {
             return;
         }
-
-        
+       
         let animateConfig = config.animates;
         let animation = this.node.getComponent(cc.Animation);
         this.removeAnimationData();
