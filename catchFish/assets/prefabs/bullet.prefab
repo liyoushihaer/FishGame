@@ -10,7 +10,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "fish",
+    "_name": "bullet",
     "_objFlags": 0,
     "_opacity": 255,
     "_color": {
@@ -29,8 +29,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 65,
-      "height": 47
+      "width": 33,
+      "height": 37
     },
     "_children": [],
     "_rotationX": 0,
@@ -39,8 +39,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
+      "x": 517,
+      "y": 159
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -56,15 +56,12 @@
       },
       {
         "__id__": 3
-      },
-      {
-        "__id__": 4
       }
     ],
     "_prefab": {
-      "__id__": 5
+      "__id__": 4
     },
-    "groupIndex": 2
+    "groupIndex": 1
   },
   {
     "__type__": "cc.Sprite",
@@ -74,7 +71,9 @@
       "__id__": 1
     },
     "_enabled": true,
-    "_spriteFrame": null,
+    "_spriteFrame": {
+      "__uuid__": "c8b85bf2-cc45-49e8-80c9-c039b8c50937"
+    },
     "_type": 0,
     "_sizeMode": 1,
     "_fillType": 0,
@@ -91,27 +90,23 @@
     "_atlas": null
   },
   {
-    "__type__": "cc.Animation",
+    "__type__": "cc.BoxCollider",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 1
     },
     "_enabled": true,
-    "_defaultClip": null,
-    "_clips": [],
-    "playOnLoad": false
-  },
-  {
-    "__type__": "343bdHcjtNL9Z3sdk+gt6iu",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
+    "tag": 0,
+    "_offset": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
     },
-    "_enabled": true,
-    "spriteAtlas": {
-      "__uuid__": "745d770c-5c11-4414-8947-a4fe1428a84c"
+    "_size": {
+      "__type__": "cc.Size",
+      "width": 35,
+      "height": 35
     }
   },
   {
@@ -120,9 +115,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "73c6bc58-ab2b-41fc-8cd9-fff939d711d6"
+      "__id__": 0
     },
-    "fileId": "42FxTbE9FFe7a5RM8S1QBo",
+    "fileId": "d483dnK1lZOMqnXL7fAAOn8",
     "sync": false
   }
 ]

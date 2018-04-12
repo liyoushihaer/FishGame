@@ -18,16 +18,21 @@ cc.Class({
             return;
         }
 
-        let animation = this.getComponent(cc.Animation);
+        
         let animateConfig = config.animates;
-
+        let animation = this.node.getComponent(cc.Animation);
         this.removeAnimationData();
         let spriteFrameList = this.getSpriteFrameList(animateConfig);
         let clicp = cc.AnimationClip.createWithSpriteFrames(spriteFrameList,spriteFrameList.length);
-        clicp.wrapMode = cc.WrapMode.Loop;
+        clicp.wrapMode = cc.WrapMode.Normal;
         animation.defaultClip = clicp;
         animation.setCurrentTime(animateConfig.speed);
         animation.addClip(clicp, "run");
+    },
+
+    playAction:function(){
+        let animation = this.node.getComponent(cc.Animation);
+        animation.stop("run");
         animation.play("run");
     },
 
