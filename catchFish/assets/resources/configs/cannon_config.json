@@ -1,0 +1,10 @@
+{
+    "cannon_1": {
+        "animates": {
+            "pre": "weapon_level_1",
+            "start": 0,
+            "end": 4,
+            "speed": 50
+        }
+    }
+}
