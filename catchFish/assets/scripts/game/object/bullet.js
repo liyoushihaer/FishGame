@@ -53,6 +53,8 @@ cc.Class({
     onBulletCollisionFish:function()
     {
         // 打开渔网
-
+        let fishNet =  global.GameFactory.createFishNet()
+        fishNet.parent = this.node.parent;
+        fishNet.position = this.node.position;
     }
 });

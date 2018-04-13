@@ -14,6 +14,10 @@ cc.Class({
             default: null,
             type: cc.Prefab
         },
+        netPrefab:{
+            default: null,
+            type: cc.Prefab
+        },
         _cannonPos:cc.Vec2(0,0),
         _cannonScript:null
     },

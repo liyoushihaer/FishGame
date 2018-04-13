@@ -40,9 +40,13 @@ cc.Class({
                 }
             });
         };
+
+        global.GameFactory.initGameFactory();
+
         for (let i in defines.configMap){
             loadConfig(defines.configMap[i]);
         }
+        
     },
     update: function(dt){
         this.addFishStateTime += dt;
@@ -131,6 +135,7 @@ cc.Class({
             this.addFishNode(data);
         }
     },
+    
     addFishNode(data){
         // cc.log('add fish node = ' + JSON.stringify(data));
         let fishNode = cc.instantiate(this.fishPrefab);

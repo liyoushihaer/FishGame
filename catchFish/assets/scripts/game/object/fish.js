@@ -162,5 +162,6 @@ cc.Class({
     },
     onCollisionExit: function (other, self) {
         console.log('on collision exit');
-    }
+    },
+    
 });
