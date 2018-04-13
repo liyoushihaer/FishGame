@@ -22,43 +22,17 @@ cc.Class({
         this._action.step(0);
     },
 
-    // update: function (dt) {
-    //     while (this._isStart) 
-    //     {
-    //         // if(this.isBulletOutWindow()== true)
-    //         // {
-    //         //     this.node.destroy();
-    //         //     return;
-    //         // }
-    
-    //         // let length = dt*10;
-    //         // let deltaX = length* Math.cos(this._angle);
-    //         // let deltaY = Math.abs(length*Math.sin(this._angle));
-    //         // if(this._angle<0)
-    //         // {
-    //         //     deltaX = deltaX*-1;
-    //         // }
-            
-    //         // let prePos = this.node.position; 
-    //         // let newPos = new cc.Vec2(prePos.x+deltaX,prePos.y+deltaY); 
-    //         // this.node.position  = newPos;
-
-    //         // var action = cc.moveTo(dt, newPos.x, newPos.y);
-           
-    //         // this.node.stopAction(this._action);
-    //         // this.node.runAction(action);
-    //         // this._action = action;
-    //     } ;
-    // },
-
     onCollisionEnter:function(other,self)
     {
-        this.node.destroy();
         cc.log("bullet enter collision")
+        this.node.destroy();
+        this.onBulletCollisionFish();      
     },
+
     onCollisionStay: function (other, self) {
         console.log('on collision stay');
     },
+    
     onCollisionExit: function (other, self) {
         console.log('on collision exit');
     },
@@ -79,6 +53,6 @@ cc.Class({
     onBulletCollisionFish:function()
     {
         // 打开渔网
-        
+
     }
 });

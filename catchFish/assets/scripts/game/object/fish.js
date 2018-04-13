@@ -84,6 +84,11 @@ cc.Class({
             case FishState.RunFast:
                 break;
             case FishState.Dead:
+                let animation = this.getComponent(cc.Animation);
+                var anim1 = animation.getAnimationState('dead');
+                animation.stop("run");
+                anim1.on('finished',this.dead, this);               
+                animation.play("dead");
                 break;
             default:
                 break;
@@ -131,6 +136,7 @@ cc.Class({
 
     onCollisionEnter:function(other,self)
     {
+        this.setState(FishState.Dead);
         cc.log("fish enter collision")
         // 碰撞系统会计算出碰撞组件在世界坐标系下的相关的值，并放到 world 这个属性里面
         var world = self.world;
