@@ -21,7 +21,9 @@ cc.Class({
         this.addRandomFishTime = 0;
         this.stateAddFish = 0;
         this.addFishStateTime = 0;
-
+        var manager = cc.director.getCollisionManager();
+        manager.enabled = true;
+        
         let configCount = 0;
         const loadConfig = (resPath)=>{
             cc.loader.loadRes(resPath, (err, result)=>{

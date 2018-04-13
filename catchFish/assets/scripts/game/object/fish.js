@@ -150,5 +150,11 @@ cc.Class({
 
         // 以下属性为 矩形 和 多边形 碰撞组件特有属性
         var ps = world.points;
+    },
+    onCollisionStay: function (other, self) {
+        console.log('on collision stay');
+    },
+    onCollisionExit: function (other, self) {
+        console.log('on collision exit');
     }
 });

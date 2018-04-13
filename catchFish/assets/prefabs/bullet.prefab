@@ -122,7 +122,8 @@
     "_enabled": true,
     "_angle": 0,
     "_action": null,
-    "_isStart": false
+    "_isStart": false,
+    "_bulletId": -1
   },
   {
     "__type__": "cc.PrefabInfo",

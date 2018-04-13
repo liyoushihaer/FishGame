@@ -65,7 +65,7 @@ cc.Class({
     createBullet:function(angle,startPos){
         let bulletNode = cc.instantiate(this.bulletPrefab);
         bulletNode.parent = this.node;
-        
+        bulletNode.setRotation(angle);
         bulletNode.getComponent('bullet').initBulletWithData(angle,startPos);
     }
     // called every frame, uncomment this function to activate update callback
