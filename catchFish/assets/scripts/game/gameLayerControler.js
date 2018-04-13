@@ -22,17 +22,9 @@ cc.Class({
         _cannonScript:null
     },
 
-    // use this for initialization
     onLoad: function () {
         this.node.on('touchstart',function(event){
             this.onTouchStart(event);
-        }, this);
-
-        this.node.on('touchmove',function(event){
-
-        }, this);
-
-        this.node.on('touchend',function(event){
         }, this);
 
         this.initCannonPos();
@@ -40,11 +32,7 @@ cc.Class({
 
     initCannonPos:function()
     {
-        let posOrigin = this.gameCannon.position;
-        let newPos = this.gameCannon.convertToWorldSpaceAR(posOrigin);
-        newPos =  this.node.convertToNodeSpaceAR(newPos);
-        this._cannonPos = newPos;
-
+        this._cannonPos = new cc.Vec2(-214,-320);
         this._cannonScript = this.gameCannon.getComponent('cannon');
     },
 
@@ -52,7 +40,7 @@ cc.Class({
     {
         let pos = event.getLocation();
         pos =  this.node.convertToNodeSpaceAR(pos);
-        cc.log("touch pos"+pos.x,pos.y);
+
         let vecSub = cc.pSub(pos,this._cannonPos);
         let direction = cc.pAngle(cc.p(0,1), vecSub);
         var angle = direction / Math.PI * 180; 
@@ -62,6 +50,8 @@ cc.Class({
             angle = -1*angle;
         }
         this.gameCannon.rotation=angle;
+        this.initCannonPos();
+    
         this._cannonScript.playAction();
         this.createBullet(angle,this._cannonPos);
     },
@@ -73,5 +63,5 @@ cc.Class({
 
         bulletNode.setRotation(angle);
         bulletNode.getComponent('bullet').initBulletWithData(angle,startPos);
-    }
+    },
 });

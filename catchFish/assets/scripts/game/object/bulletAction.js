@@ -1,7 +1,7 @@
 const  kRevolutionHeight = 720;
 const  kRevolutionWidth = 1280;
-const  M_PI = 180;//Math.PI;
-const  M_PI_2 = 90;//M_PI/2;
+const  M_PI = Math.PI;
+const  M_PI_2 = M_PI/2;
 
 
 cc.ActionBulletMove = cc.ActionInterval.extend({
@@ -49,33 +49,29 @@ cc.ActionBulletMove = cc.ActionInterval.extend({
                 pt.x = pt.x+2*Math.abs(deltaX);
                 this._dx = -this._dx;
                 this._angle = -this._angle; 
-                //this.target.setBulletId(-1);
             }
             if (pt.x > kRevolutionWidth/2)  { 
                 pt.x = kRevolutionWidth/2 - (pt.x - kRevolutionWidth/2); 
                 this._dx = -this._dx; 
                 this._angle = -this._angle; 
-                //this.target.setBulletId(-1);
             }
     
             if (pt.y < -kRevolutionHeight/2) { 
                 pt.y = pt.y+2* Math.abs(deltaY);
                 this._dy = -this._dy; 
                 this._angle = M_PI - this._angle; 
-                //this.target.setBulletId(-1);
             }
         
             if (pt.y > kRevolutionHeight/2)  { 
                 pt.y = kRevolutionHeight/2 - (pt.y - kRevolutionHeight/2); 
                 this._dy = -this._dy;
                 this._angle = M_PI - this._angle;
-               //this.target.setBulletId(-1);
             }
     
             console.log("old angle is ", this._angle);
             this.target.setPosition(pt);
             //cc.log("point x = %f,point y = %f, time is %f", pt.x_, pt.y_, dt);
-            this.target.setRotation(this._angle);
+            this.target.setRotation((this._angle) * 180 / M_PI);
         }
         else
         {
