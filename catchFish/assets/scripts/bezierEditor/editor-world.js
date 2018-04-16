@@ -36,6 +36,7 @@ cc.Class({
         this.linePointList = [];
         this.bezierConfig = undefined;
         let touchPoint = undefined;
+
         this.node.on(cc.Node.EventType.TOUCH_START, (event)=>{
             console.log("touch start");
             for (let i in this.controlPointList){
@@ -71,7 +72,6 @@ cc.Class({
             this.initScrollView(result);
             let id = Object.keys(result)[0];
             this.showBezier(id);
-
         });
 
         global.event.on('choose_bezier', this.showBezier.bind(this));
@@ -103,6 +103,7 @@ cc.Class({
         point.position = pos;
         this.controlPointList.push(point);
     },
+    
     update: function (dt) {
 
         //根据控制点，生成一条贝塞尔曲线
@@ -269,6 +270,7 @@ cc.Class({
             this.addScrollViewCell(i);
         }
     },
+
     addScrollViewCell: function (id) {
         console.log(' i = ' + id);
         let node = cc.instantiate(this.scrollViewCellPrefab);
@@ -276,6 +278,7 @@ cc.Class({
         node.position = cc.p(0, - this.scrollViewContent.children.length * 40);
         node.getComponent('scroll-view-cell').init({bezierId: id})
     },
+
     removeScrollViewCell: function (id) {
         //删掉一个cell
         for (let i = 0 ; i < this.scrollViewContent.children.length ; i ++){
@@ -291,14 +294,15 @@ cc.Class({
             cell.position = cc.p(0, - (i + 1) * 40)
         }
     },
-    // ,
+
     removeControllerPoint:function () {
         for (let i = 0 ; i < this.controlPointList.length ; i ++){
             this.controlPointList[i].destroy();
         }
+
+         //线的节点也删掉
         for (let i = 0 ; i < this.linePointList.length ; i ++){
-            this.node.removeChild(this.linePointList[i]);
-            //线的节点也删掉
+            this.node.removeChild(this.linePointList[i]);          
         }
         this.controlPointList = [];
     }
