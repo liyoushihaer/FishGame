@@ -1,9 +1,7 @@
-// import Bezier from './../utility/math/bezier'
-// import defines from './../defines'
-// import global from './../global'
 const Bezier  = require('bezier');
 const defines = require('defines');
 const global = require('global');
+
 cc.Class({
     extends: cc.Component,
 
@@ -61,6 +59,9 @@ cc.Class({
                 touchPoint = undefined;
             }
         });
+
+        cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
+
         //取出贝塞尔曲线的配置
         cc.loader.loadRes(defines.configMap.bezierConfig, (err, result)=>{
             if (err){
@@ -76,6 +77,23 @@ cc.Class({
         global.event.on('choose_bezier', this.showBezier.bind(this));
 
     },
+
+    onKeyUp: function (event) {
+        switch(event.keyCode) {
+            case cc.KEY.z:
+                console.log("z down");     
+                if(this.controlPointList.length>1)
+                {
+                    this.revocationBezier();
+                }
+                
+                break;
+            case cc.KEY.Delete:
+                this.buttonClick(null,"delete");
+                break;
+        }
+    },
+
     addPoint: function (pos) {
         console.log('pos = ' + JSON.stringify(pos));
         let point = cc.instantiate(this.controlPointPrefab);
@@ -230,6 +248,22 @@ cc.Class({
         }
 
     },
+    
+    revocationBezier:function()
+    {
+        let config = [];
+        for (let i = 0 ; i < this.controlPointList.length-1 ; i ++){
+            config.push({
+                x: this.controlPointList[i].position.x,
+                y: this.controlPointList[i].position.y
+            })
+        }
+        this.removeControllerPoint();
+        for (let i = 0 ; i < config.length ; i ++){
+            this.addPoint(config[i]);
+        }
+    },
+
     initScrollView: function (data) {
         for (let i in data){
             this.addScrollViewCell(i);
@@ -251,7 +285,6 @@ cc.Class({
                 this.scrollViewContent.removeChild(cell);
             }
         }
-
 
         for (let i = 0 ; i < this.scrollViewContent.children.length ; i ++){
             let cell = this.scrollViewContent.children[i];

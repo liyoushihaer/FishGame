@@ -76,20 +76,7 @@ cc.ActionBulletMove = cc.ActionInterval.extend({
         else
         {
            console.log("tagget is no nonentity");
-        }
-    
-        // if (this.target)
-        // {
-        //     if (this._elapsed >= this._duration)
-        //     {
-        //         this.target.active = false;
-        //     }
-        //     else
-        //     {
-        //        this. target.active = true;
-        //     }
-        // }
-    
+        }   
     },
 
     isDone:function() { 

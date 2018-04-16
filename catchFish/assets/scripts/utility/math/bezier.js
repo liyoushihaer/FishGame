@@ -3,10 +3,6 @@
  */
 const Bezier = function (controllerPoints, count, all_time) {
   var that = {};
-  // that._pointList = controllerPoints;
-  // that._time = all_time;
-  // that._count = count;
-
   var _pointList = controllerPoints;
   var _time = all_time;
   var _count = count;
