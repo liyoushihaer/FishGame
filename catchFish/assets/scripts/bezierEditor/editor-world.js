@@ -79,6 +79,8 @@ cc.Class({
     addPoint: function (pos) {
         console.log('pos = ' + JSON.stringify(pos));
         let point = cc.instantiate(this.controlPointPrefab);
+        let cellScript = point.getComponent("point_cell");
+        cellScript.initPoint(this.controlPointList.length);
         point.parent = this.node.parent;
         point.position = pos;
         this.controlPointList.push(point);
@@ -238,9 +240,7 @@ cc.Class({
         let node = cc.instantiate(this.scrollViewCellPrefab);
         this.scrollViewContent.addChild(node);
         node.position = cc.p(0, - this.scrollViewContent.children.length * 40);
-        node.getComponent('scroll-view-cell').init({bezierId: id});
-        // node.id = id;
-        // node.on('click', this.cellClick.bind(this));
+        node.getComponent('scroll-view-cell').init({bezierId: id})
     },
     removeScrollViewCell: function (id) {
         //删掉一个cell

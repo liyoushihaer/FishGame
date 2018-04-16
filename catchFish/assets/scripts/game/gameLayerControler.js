@@ -51,7 +51,11 @@ cc.Class({
         }
         this.gameCannon.rotation=angle;
         this.initCannonPos();
-    
+        
+        // let oldPosition = this.gameCannon.position;
+        // let newPos_1 = this.node.convertToWorldSpaceAR(oldPosition);
+        // let newPos_2 = this.node.convertToNodeSpaceAR(newPos_1);
+
         this._cannonScript.playAction();
         this.createBullet(angle,this._cannonPos);
     },
