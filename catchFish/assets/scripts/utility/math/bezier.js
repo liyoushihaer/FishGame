@@ -11,6 +11,7 @@ const Bezier = function (controllerPoints, count, all_time) {
     this.x=x||0.0;
     this.y=y||0.0;
   }
+  
   function PointForBezier(cp, t)
   {
     let result = new Point2D;

@@ -6,6 +6,7 @@ cc.Class({
             default: null,
             type: cc.SpriteAtlas
         },
+        _cannonLevel:0
     },
 
     onLoad: function () {
@@ -17,11 +18,14 @@ cc.Class({
         {
             return;
         }
-       
+        this._cannonLevel = config.level;
         let animateConfig = config.animates;
         let animation = this.node.getComponent(cc.Animation);
+        let sprite = this.node.getComponent(cc.Sprite);
         this.removeAnimationData();
         let spriteFrameList = this.getSpriteFrameList(animateConfig);
+        sprite.spriteFrame = spriteFrameList[0];
+
         let clicp = cc.AnimationClip.createWithSpriteFrames(spriteFrameList,spriteFrameList.length);
         clicp.wrapMode = cc.WrapMode.Normal;
         animation.defaultClip = clicp;

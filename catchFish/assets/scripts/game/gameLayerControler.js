@@ -19,7 +19,8 @@ cc.Class({
             type: cc.Prefab
         },
         _cannonPos:cc.Vec2(0,0),
-        _cannonScript:null
+        _cannonScript:null,
+        _cannonLevel:0
     },
 
     onLoad: function () {
@@ -51,10 +52,6 @@ cc.Class({
         }
         this.gameCannon.rotation=angle;
         this.initCannonPos();
-        
-        // let oldPosition = this.gameCannon.position;
-        // let newPos_1 = this.node.convertToWorldSpaceAR(oldPosition);
-        // let newPos_2 = this.node.convertToNodeSpaceAR(newPos_1);
 
         this._cannonScript.playAction();
         this.createBullet(angle,this._cannonPos);
@@ -68,4 +65,22 @@ cc.Class({
         bulletNode.setRotation(angle);
         bulletNode.getComponent('bullet').initBulletWithData(angle,startPos);
     },
+    
+    onAddCannon:function(event, customEventData)
+    {
+        let tempLevel = this._cannonLevel+1;
+        let gameControler= this.node.getComponent('GameControler');
+        let data ;
+        [data, this._cannonLevel]  = gameControler.getCannonConfig(tempLevel);
+        this._cannonScript.initWithData(data); 
+    },
+
+    onSubCannon:function(event, customEventData)
+    {
+        let tempLevel = this._cannonLevel-1;
+        let gameControler= this.node.getComponent('GameControler');
+        let data ;
+        [data, this._cannonLevel]  = gameControler.getCannonConfig(tempLevel);
+        this._cannonScript.initWithData(data); 
+    }
 });

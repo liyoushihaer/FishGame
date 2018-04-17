@@ -16,7 +16,7 @@ cc.Class({
         this.fishAnim.play("netAnimation");
     },
 
-    initNetWithData:function(pos){
+    initNetWithData:function(pos,sprite){
         
         this.fishAnim.play("netAnimation");
     },

@@ -107,9 +107,9 @@ cc.Class({
         //随机一条贝塞尔曲
         //取出贝塞尔曲线的配置
         let bezierConfig = this[defines.configMap.bezierConfig];
-        console.log("bezier config = " + JSON.stringify(bezierConfig));
+       // console.log("bezier config = " + JSON.stringify(bezierConfig));
         let bezier = bezierConfig[Object.keys(bezierConfig)[Math.floor(Math.random() * Object.keys(bezierConfig).length)]];
-        cc.log('bezier id = ' + JSON.stringify(bezier));
+        //cc.log('bezier id = ' + JSON.stringify(bezier));
         //根据鱼的type + 一条贝塞尔曲线 + 阵列数据 初始化一条鱼
         this.addOneFish(fishType, array, bezier);
     },
@@ -162,8 +162,27 @@ cc.Class({
         let cannonConfig = this[defines.configMap.cannonConfig];
         let groupIdList = Object.keys(cannonConfig);
         let data = cannonConfig[groupIdList[0]];
+        data.level = 0;
         let cannonScript = this.cannon.getComponent('cannon');
         cannonScript.initWithData(data);
+    },
+
+    getCannonConfig:function(level)
+    {
+        let cannonConfig = this[defines.configMap.cannonConfig];
+        let groupIdList = Object.keys(cannonConfig);
+        if(level >= groupIdList.length)
+        {
+            level =  groupIdList.length-1;
+        }
+
+        if(level <0)
+        {
+            level =0;
+        }
+        
+        let data = cannonConfig[groupIdList[level]];
+        return [data,level];
     }
 });
 

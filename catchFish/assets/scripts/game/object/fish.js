@@ -20,25 +20,20 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-        // this.getComponent(cc.Sprite).spriteFrame = this.spriteAtlas.getSpriteFrame('cannonPlus');
         this.state = FishState.Invalid;
         this.runTime = 0;
     },
     initWithData: function(data){
-        // this.getComponent(cc.Sprite).spriteFrame = this.spriteAtlas.getSpriteFrame('cannonPlus');
-
-
         //首先取出动画
         let config = data.config;
         let bezier = data.bezier;
         let animation = this.getComponent(cc.Animation);
 
-        //去除
         let clicpNameList = ['run','dead'];
         let animateConfig = config.animates;
         for (let i = 0 ; i < clicpNameList.length ; i ++){
             let spriteFrameList = this.getSpriteFrameList(animateConfig[clicpNameList[i]]);
-            cc.log('sprite frame list = ' + spriteFrameList.length);
+           // cc.log('sprite frame list = ' + spriteFrameList.length);
             let clicp = cc.AnimationClip.createWithSpriteFrames(spriteFrameList,5);
             if (clicpNameList[i] === 'run'){
                 clicp.wrapMode = cc.WrapMode.Loop;
@@ -47,9 +42,6 @@ cc.Class({
             animation.addClip(clicp, clicpNameList[i]);
 
         }
-        //
-        // this.getComponent(cc.Sprite).spriteFrame = this.spriteAtlas.getSpriteFrame("fish_bigred_dead_0");
-
 
         //创建一条贝塞尔曲线
         this.bezier = Bezier(bezier,500, 10);
@@ -63,7 +55,7 @@ cc.Class({
         let spriteFrameList = [];
         for (let i = start ; i < (end + 1) ; i ++){
             let str = pre + "_" + i;
-            cc.log('str = ' + str);
+           // cc.log('str = ' + str);
             let spriteFrame = this.spriteAtlas.getSpriteFrame(str);
             spriteFrameList.push(spriteFrame);
         }
@@ -138,24 +130,6 @@ cc.Class({
     {
         this.setState(FishState.Dead);
         cc.log("fish enter collision")
-        // 碰撞系统会计算出碰撞组件在世界坐标系下的相关的值，并放到 world 这个属性里面
-        var world = self.world;
-
-        // 碰撞组件的 aabb 碰撞框
-        var aabb = world.aabb;
-
-        // 上一次计算的碰撞组件的 aabb 碰撞框
-        var preAabb = world.preAabb;
-
-        // 碰撞框的世界矩阵
-        var t = world.transform;
-
-        // 以下属性为圆形碰撞组件特有属性
-        var r = world.radius;
-        var p = world.position;
-
-        // 以下属性为 矩形 和 多边形 碰撞组件特有属性
-        var ps = world.points;
     },
     onCollisionStay: function (other, self) {
         console.log('on collision stay');
